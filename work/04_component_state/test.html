@@ -18,6 +18,40 @@
     1. 显示h2标题, 初始文本为: 你喜欢我
     2. 点击标题更新为: 我喜欢你
   */
+  // 1. 定义组件类
+  class Like extends React.Component {
+
+    constructor(props) {
+      super(props)
+      // 初始化state
+      this.state = { // 必须是对象
+        isLikeMe: false,
+      }
+    }
+
+    // 组件类自定义的方法this不是组件对象, 必须使用箭头函数让this是组件对象
+    handleClick = () => {
+      // alert(this)
+      // 更新状态
+      // this.state.isLikeMe = !this.state.isLikeMe
+      // 计算出当前最新的状态
+      const isLikeMe = !this.state.isLikeMe
+      // 更新状态(必须调用setState())
+      this.setState({isLikeMe})
+    }
+
+    render() {
+      console.log('render()')
+      // 读取状态值
+      const {isLikeMe} = this.state
+      const text = isLikeMe ? '你喜欢我' : '我喜欢你'
+      return <h2 onClick={this.handleClick}>{text}</h2>
+    }
+  }
+
+  // 2. 渲染组件标签
+  ReactDOM.render(<Like/>, document.getElementById('example'))
+
 </script>
 </body>
 </html>
