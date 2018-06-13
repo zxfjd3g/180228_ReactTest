@@ -7,18 +7,82 @@
 <body>
 
 <div id="example1"></div>
+<div id="example2"></div>
+<div id="example3"></div>
+
 
 <script type="text/javascript" src="../js/react.development.js"></script>
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
 
   /*
 需求: 自定义用来显示一个人员信息的组件, 效果如页面. 说明
+  1). 姓名必须指定
   1). 如果性别没有指定, 默认为男
   2). 如果年龄没有指定, 默认为18
   */
+
+  class Person extends React.Component {
+
+    render () {
+      console.log(this)
+      // 取出props的数据
+      const {name, sex, age} = this.props
+      return (
+        <ul>
+          <li>姓名: {name}</li>
+          <li>性别: {sex}</li>
+          <li>年龄: {age}</li>
+        </ul>
+      )
+    }
+  }
+
+  // 指定属性值的类型和必要性
+  Person.propTypes = {
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number,
+    sex: PropTypes.string
+  }
+
+  // 指定属性的默认值
+  Person.defaultProps = {
+    age: 18,
+    sex: '男'
+  }
+
+  const p = {
+    name: 'Tom',
+    age: 18,
+    sex: '男'
+  }
+
+  /*标签的属性会自动传入到组件对象的props对象中*/
+  ReactDOM.render(<Person name={p.name} age={p.age} sex={p.sex}/>, document.getElementById('example1'))
+  ReactDOM.render(<Person name='Jack' age='12'/>, document.getElementById('example2'))
+
+  const p3 = {
+    name: 'BOB',
+    age: 19,
+    sex: '女'
+  }
+  // ReactDOM.render(<Person name={p3.name} age={p3.age} sex={p3.sex}/>, document.getElementById('example3'))
+  ReactDOM.render(<Person {...p3}/>, document.getElementById('example3'))
+
+/*
+
+  function fn(...as) {// 封装多个数据到一个数组中
+
+  }
+  fn(1, 2, 3)
+  const arr1 = [1,2,3]
+  const arr2 = [4, ...arr1,6]  // 将数组中的元素拆分出来
+  // <Person {...p3}/> : 将对象中的所有属性拆分出来
+  // 三点运算符的作用: 封装多个数据, 从容器中将多个数据拆分出来(打包/解包)
+*/
 
 </script>
 </body>
