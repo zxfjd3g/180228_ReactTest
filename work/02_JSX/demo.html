@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSX_DEMO</title>
+</head>
+<body>
+  <h2>前端JS框架列表</h2>
+  <div id="example1"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    document.createElement('div')
+    /*
+     功能: 动态展示列表数据
+     // 显示多个数据列表: 包含多个数据的数组
+     // 显示多个li列表: 包含多个li标签的数组
+     工作: 根据数据的数组生成标签的数组
+     */
+    const names = ['jQuery', 'A', 'B', 'C', 'D'] // 多个数据的数组
+/*
+    // 根据数据的数组生成标签的数组
+    const lis = names.map((name, index) => {
+      return <li key={index}>{name}</li>
+    })
+
+    // 1. 创建虚拟dom
+    const ul = (
+      <ul>
+        {lis}
+      </ul>
+    )*/
+
+    const ul = (
+      <ul>
+        {
+          names.map((name, index) => <li key={index}>{name}</li>)
+        }
+      </ul>
+    )
+
+    // 2. 渲染虚拟dom
+    ReactDOM.render(ul, document.getElementById('example1'))
+  </script>
+</body>
+</html>
