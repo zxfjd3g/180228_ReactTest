@@ -14,8 +14,12 @@
 <script type="text/babel">
   /*
   验证:
-  虚拟DOM+DOM Diff算法: 最小化页面重绘
+  虚拟DOM+DOM Diff算法: 最少次的重绘 + 最小化页面重绘
   */
+
+  const div = document.getElementById('example')
+  const div2 = <div>xxxx</div>
+  debugger
 
   class HelloWorld extends React.Component {
     constructor(props) {

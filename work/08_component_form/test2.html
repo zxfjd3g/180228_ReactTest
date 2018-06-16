@@ -23,8 +23,8 @@
       super(props)
       // 初始化状态
       this.state = {
-        username: '',
-        pwd: ''
+        username: 'abc',
+        pwd: '123'
       }
     }
 
@@ -52,10 +52,11 @@
       // return false
     }
     render () {
+      const {username, pwd} = this.state
       return (
         <form action="/test" onSubmit={this.login}>
-          用户名: <input type="text" onChange={this.handleNameChange}/>
-          密码: <input type="password" onChange={this.handlePwdChange}/> /*事件在输入过程中不断触发*/
+          用户名: <input type="text" onChange={this.handleNameChange} value={username}/>
+          密码: <input type="password" onChange={this.handlePwdChange} value={pwd}/> /*事件在输入过程中不断触发*/
           <input type="submit" value="登陆"/>
         </form>
       )
